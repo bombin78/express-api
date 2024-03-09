@@ -7,9 +7,7 @@ const PostsController = {
 		const authorId = req.user.userId;
 
 		if(!content) {
-			return res.status(400).json({
-				error: 'Все поля обязательны'
-			});
+			return res.status(400).json({ error: 'Все поля обязательны' });
 		}
 
 		try {
@@ -89,19 +87,17 @@ const PostsController = {
 		const { id } = req.params;
 		const userId = req.user.userId;
 
-		const post = await prisma.post.findUnique({
-			where: { id },
-		});
-
-		if (!post) {
-			return res.status(404).json({ error: 'Пост не найден' });
-		}
-
-		if (post.authorId !== userId) {
-			return res.status(403).json({ error: 'Нет доступа' });
-		}
-
 		try {
+			const post = await prisma.post.findUnique({where: { id }});
+
+			if (!post) {
+				return res.status(404).json({ error: 'Пост не найден' });
+			}
+
+			if (post.authorId !== userId) {
+				return res.status(403).json({ error: 'Нет доступа' });
+			}
+
 			const transaction = await prisma.$transaction([
 				prisma.comment.deleteMany({ where: { postId: id }}),
 				prisma.like.deleteMany({ where: { postId: id }}),

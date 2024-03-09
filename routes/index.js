@@ -3,6 +3,7 @@ const router = express.Router();
 const {
 	UserController,
 	PostsController,
+	CommentsController,
 } = require("../controllers");
 // https://www.npmjs.com/package/multer
 // https://github.com/expressjs/multer/blob/master/doc/README-ru.md
@@ -33,5 +34,9 @@ router.post('/posts', authenticateToken, PostsController.createPost);
 router.get('/posts', authenticateToken, PostsController.getAllPosts);
 router.get('/posts/:id', authenticateToken, PostsController.getPostById);
 router.delete('/posts/:id', authenticateToken, PostsController.deletePost);
+
+// Роуты комментариев
+router.post('/comments', authenticateToken, CommentsController.createComment);
+router.delete('/comments/:id', authenticateToken, CommentsController.deleteComment);
 
 module.exports = router;
