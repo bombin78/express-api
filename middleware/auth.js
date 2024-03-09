@@ -3,6 +3,11 @@ const jwt = require('jsonwebtoken');
 // Касается логина и пароля
 // В next лежит следующая по порядку функция
 const authenticateToken = (req, res, next) => {
+
+	if(req.method === 'OPTIONS') {
+		next();
+	}
+
 	const authHeader = req.headers['authorization'];
 
 	const token = authHeader && authHeader.split(' ')[1];

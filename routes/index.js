@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
-const UserController = require("../controllers/user-controller");
+const {
+	UserController,
+	PostsController,
+} = require("../controllers");
 // https://www.npmjs.com/package/multer
 // https://github.com/expressjs/multer/blob/master/doc/README-ru.md
 const multer = require('multer');
@@ -18,10 +21,17 @@ const storage = multer.diskStorage({
 
 const uploads = multer({storage})
 
+// Роуты пользователя
 router.post('/register', UserController.register);
 router.post('/login', UserController.login);
 router.get('/current', authenticateToken, UserController.current);
 router.get('/users/:id', authenticateToken, UserController.getUserById);
 router.put('/users/:id', authenticateToken, UserController.updateUser);
+
+// Роуты постов
+router.post('/posts', authenticateToken, PostsController.createPost);
+router.get('/posts', authenticateToken, PostsController.getAllPosts);
+router.get('/posts/:id', authenticateToken, PostsController.getPostById);
+router.delete('/posts/:id', authenticateToken, PostsController.deletePost);
 
 module.exports = router;
