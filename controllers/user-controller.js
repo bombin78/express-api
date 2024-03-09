@@ -22,9 +22,10 @@ const UserController = {
 
 			const hashedPassword = await bcrypt.hash(password, 10);
 
-			const png = Jdenticon.toPng(name, 200);
-			const avatarName = `${name}_${Date.now()}.png`;
-			const avatarPath = path.join(__dirname, '../uploads', avatarName);
+			const pngName = `${name}_${Date.now()}`;
+			const png = Jdenticon.toPng(pngName, 200);
+			const avatarName = `${pngName}.png`;
+			const avatarPath = path.join(__dirname, '/../uploads', avatarName);
 			
 			// Записываем файл (аватарку) в папку uploads
 			fs.writeFileSync(avatarPath, png);
@@ -34,7 +35,7 @@ const UserController = {
 					email,
 					password: hashedPassword,
 					name,
-					avatarUrl: `/uploads/${avatarPath}`,
+					avatarUrl: `/uploads/${avatarName}`,
 				}
 			});
 
