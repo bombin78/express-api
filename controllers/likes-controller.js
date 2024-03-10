@@ -10,6 +10,12 @@ const LikesController = {
 		}
 
 		try {
+			const existingPost = await prisma.post.findUnique({where: { id: postId }});
+
+			if (!existingPost) {
+				return res.status(404).json({ error: 'Пост не найден' });
+			}
+
 			const existingLike = await prisma.like.findFirst({
 				where: { postId, userId },
 			});

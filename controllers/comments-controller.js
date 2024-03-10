@@ -12,6 +12,12 @@ const CommentsController = {
 		}
 
 		try {
+			const existingPost = await prisma.post.findUnique({where: { id: postId }});
+
+			if (!existingPost) {
+				return res.status(404).json({ error: 'Пост не найден' });
+			}
+			
 			const comment = await prisma.comment.create({
 				data: {
 					userId,
