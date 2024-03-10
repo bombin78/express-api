@@ -1,6 +1,6 @@
 const { prisma } = require('../prisma/prisma-client');
 
-const LikesController = {
+const LikeController = {
 	likePost: async (req, res) => {
 		const { postId } = req.body;
 		const userId = req.user.userId;
@@ -67,4 +67,4 @@ const LikesController = {
 	},
 }
 
-module.exports = LikesController;
+module.exports = LikeController;

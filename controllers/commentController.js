@@ -1,6 +1,6 @@
 const { prisma } = require('../prisma/prisma-client');
 
-const CommentsController = {
+const CommentController = {
 	createComment: async (req, res) => {
 		const { postId, content } = req.body;
 		const userId = req.user.userId;
@@ -59,4 +59,4 @@ const CommentsController = {
 	},
 }
 
-module.exports = CommentsController;
+module.exports = CommentController;

@@ -1,6 +1,6 @@
 const { prisma } = require('../prisma/prisma-client');
 
-const PostsController = {
+const PostController = {
 	createPost: async(req, res) => {
 		const { content } = req.body;
 
@@ -112,4 +112,4 @@ const PostsController = {
 	},
 };
 
-module.exports = PostsController;
+module.exports = PostController;
