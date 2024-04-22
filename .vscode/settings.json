@@ -4,6 +4,11 @@
 		"dtos",
 		"jdenticon",
 		"unfollow",
-		"Роуты"
+		"Роуты",
+		"nextui",
+		"reduxjs",
+		"tailwindcss",
+		"unfollow",
+		"vite"
 	]
 }

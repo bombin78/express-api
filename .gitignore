@@ -1,8 +1,5 @@
-/server1/node_modules
-/server2/node_modules
+/server/node_modules
+/server/uploads
+/server/.env
 
-/server1/uploads
-/server2/uploads
-
-/server1/.env
-/server2/.env
+/client/node_modules
